@@ -1,5 +1,5 @@
 // Type check of the helpers and the module against stand-ins copying the Horizon signatures they
-// touch (Horizon 9d979caa). Each helper sits in its target's module, as horizon-mixins puts it.
+// touch (Horizon 6475f62f). Each helper sits in its target's module, as horizon-mixins puts it.
 #![allow(dead_code, unused_variables, unused_imports, clippy::all)]
 extern crate self as horizon_client;
 extern crate self as horizon_client_render;
@@ -71,7 +71,7 @@ pub mod chat {
     struct Line { added: u64, content: Text }
     pub struct Chat { lines: Vec<Line>, scroll: usize, pub options: ChatOptions, pub received: u64 }
     impl Chat {
-        pub fn layout(&self, height: i32, ticks: u64, focused: bool) -> Vec<GuiDraw> {
+        pub fn layout(&self, height: i32, ticks: f32, focused: bool) -> Vec<GuiDraw> {
             if let ::core::ops::ControlFlow::Break(v) = __layout(self, height, ticks, focused) { return v; }
             Vec::new()
         }

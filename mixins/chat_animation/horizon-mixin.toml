@@ -1,10 +1,10 @@
 [mod]
 id = "chat_animation"
-version = "0.1.0"
+version = "0.1.1"
 priority = 100
 
 [compatibility]
-horizon_revision = "9d979caa48a3bb58203319b9ea044db58c38e0d8"
+horizon_revision = "6475f62f3c834b7489e1816bf47f47ea5eb2b879"
 
 # The animations, the settings and the config screen. In the render library, beside the chat.
 [[module]]
@@ -24,7 +24,7 @@ helper = "layout.rs"
 bindings = [
   { name = "chat", ty = "&Chat", value = "self" },
   { name = "height", ty = "i32", value = "height" },
-  { name = "ticks", ty = "u64", value = "ticks" },
+  { name = "ticks", ty = "f32", value = "ticks" },
   { name = "focused", ty = "bool", value = "focused" },
 ]
 
@@ -167,3 +167,22 @@ hook_version = 1
 kind = "HEAD"
 helper = "frame.rs"
 bindings = [{ name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" }]
+
+# DirectX 12 (FXC): Horizon's terrain shader made ready for FXC; the game crashed at its start there.
+[[module]]
+id = "fxc_runtime"
+file = "crates/horizon-client-render/src/lib.rs"
+name = "native_chat_animation_fxc"
+source = "fxc_runtime.rs"
+visibility = "pub"
+
+[[injection]]
+id = "fxc"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client_render::gfx::reuse::On<'_>::create_shader_module"
+helper = "fxc.rs"
+bindings = [
+  { name = "this", ty = "&On<'_>", value = "self" },
+  { name = "descriptor", ty = "&wgpu::ShaderModuleDescriptor<'_>", value = "&descriptor" },
+]
