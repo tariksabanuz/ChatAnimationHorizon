@@ -1,6 +1,6 @@
 // Chat::layout: the chat as Horizon lays it out, then a new message rises into place and fades
 // in, and the indicator bar is left out.
-fn chat_animation_layout(chat: &Chat, height: i32, ticks: u64, focused: bool) -> ::core::ops::ControlFlow<Vec<GuiDraw>> {
+fn chat_animation_layout(chat: &Chat, height: i32, ticks: f32, focused: bool) -> ::core::ops::ControlFlow<Vec<GuiDraw>> {
     use crate::native_chat_animation as ca;
     if !ca::enter(1) {
         return ::core::ops::ControlFlow::Continue(());
