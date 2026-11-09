@@ -17,7 +17,7 @@ use std::time::Instant;
 
 pub const ID: &str = "chat_animation";
 pub const NAME: &str = "Chat Animation";
-pub const VERSION: &str = "0.1.1";
+pub const VERSION: &str = "0.1.2";
 pub const DESCRIPTION: &str = "By tariksabanuz. New chat messages slide up smoothly and fade in, the chat's input \
 field slides up when you open it, and the indicator line beside messages can be hidden. Settings: Options > Chat Animation Settings.";
 
